@@ -4,6 +4,51 @@ Email sending in Reaction is handled by [Nodemailer](https://github.com/nodemail
 
 All emails that are sent from Reaction are added to a job queue for both logging and failure handling (see [vsivsi:job-collection](https://github.com/vsivsi/meteor-job-collection) for full API docs). While you can add jobs directly to the queue, it is recommended that you use the API outlined below to send emails.
 
+## Templates
+
+The email templates that are installed by default can also be modified in the Email Settings Dashboard or the `Templates` collection where it can be used for scheduling email events.
+
+The `Templates` collection's schema is defined as:
+
+```js
+export const Templates = new SimpleSchema({
+  template: {
+    type: String // template name
+  },
+  type: ["email"]  // , “layout”
+  source: {
+    type: Array
+  }
+  source.$.header: {
+    type: String,
+    optional: true
+  },
+  source.$.subject: {
+    type: String,
+    optional: true
+  },
+  source.$.content: {
+    type: String,
+    optional: true
+  },
+  source.$.language: {
+    type: String,
+    optional: true,
+    defaultValue: "en"
+  },
+  event: {
+    type: String // an email event
+  },
+  schedule: {
+    type: String  // an interval from the time the event was triggered
+  },
+  roles: [{
+    type: String // a user role that restricts sends
+  }]
+});
+```
+
+
 ## API
 
 All server side email methods (except Meteor methods) are available in the `Reaction.Email` namespace.

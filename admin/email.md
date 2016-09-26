@@ -2,6 +2,32 @@
 
 Reaction sends emails for a variety of reasons (user signup, password reset, order receipts, etc.), so you will need to configure an email provider to send emails. Because Reaction is built on top of [Node.js](https://nodejs.org), email sending is not natively supported directly from the server. Reaction needs to send email via a mail provider using the [SMTP](https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol) protocol. You can [read more about why](https://nodemailer.com/2-0-0-beta/setup-smtp/smtp-say-what/) from the documentation of the underlying email package we use called [Nodemailer](https://github.com/nodemailer/nodemailer). Some examples of SMTP providers are [Mailgun](https://www.mailgun.com/), [Mandrill](https://www.mandrill.com/), or [Sendgrid](https://sendgrid.com/). You can use any of the [providers supported by Nodemailer](https://github.com/nodemailer/nodemailer-wellknown#supported-services) or you can define your own custom SMTP settings (more info below).
 
+## Templates
+
+Default system templates are available and can be customized in the Email Settings.
+
+| Template Event                     | Template Type                  | Implementation Status                                                                                                 |
+|------------------------------------|--------------------------------|--------------------------------------------------------------------------------------------------------|
+| New shop admin invite              | Basic Text Template            | Shop owner inviting another admin to the account (with various levels of permissions)                  |
+| Welcome (shopper)                  | Basic Text Template            | Shopper registers at shop and receives welcome email (checkbox at checkout to register for this email) |
+| Change PW/Password Reset (shopper) | Basic Text Template            |                                                                                                        |
+| Order canceled                     | Order Confirmation (variation) |                                                                                                        |
+| Order confirmation (shopper)       | Order Confirmation             |                                                                                                        |
+| Order refund                       | Order Confirmation (variation) |                                                                                                        |
+| Shipment notification (shopper)    | Order Confirmation (variation) |                                                                                                        |
+| Subscription Activation            |                                | Not yet                                                                                                |
+| Recurring Charge Confirmation       |                                | Not yet                                                                                                |
+| Upcoming Charge                    |                                | Not yet                                                                                                |
+| Charge declined                    | Basic Text Template            |                                                                                                        |
+| Card Expired                       |                                | Not yet                                                                                                |
+| Subscription Cancellation          |                                | Not yet                                                                                                |
+| Out of stock                       | Basic Text Template            | Not yet                                                                                                |
+| Refunds                            | Same as order refund above?    |                                                                                                        |
+| Abandoned Cart                     |                                | Not Yet                                                                                                |
+
+The template event triggers an email to be created, with variables defined by template type.
+
+
 ## Configuration
 
 Once logged in as a shop admin, you can find the email settings on the dashboard page of your shop.
