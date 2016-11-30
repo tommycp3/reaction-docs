@@ -3,6 +3,7 @@
 Reaction uses `/private/settings/reaction.json` for the configuration of Reaction packages and [Meteor.settings](http://docs.meteor.com/#/full/meteor_settings) for initial administrator and server setup.
 
 ## Meteor Settings
+SETTING MASTER ADMIN USERNAME AND PASSWORD
 
 You can use custom [Meteor.settings](http://docs.meteor.com/#/full/meteor_settings) by copying `settings/dev.settings.json` to `settings/settings.json`
 
@@ -24,6 +25,16 @@ For convenience, the initial Reaction administrator can be configured here.
 ```
 
 Creating a `settings.json` will prevent the default `dev.settings.json` from being loaded when you use the `reaction` command to start Reaction.
+
+
+Once you have edited the **_settings/settings.json_** you will need to run:
+
+```sh
+reaction reset && rc 
+```
+To reset the database.
+
+
 
 When the [`reaction-cli`](https://www.npmjs.com/package/reaction-cli) npm package is installed, `reaction` is the equivalent of `meteor --raw-logs --settings settings/<your-settings>.json`
 
